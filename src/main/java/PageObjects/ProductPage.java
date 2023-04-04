@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ProductPage {
 
-    static final int TIMEOUT_SIDE_PANEL = 5;
+    static final int TIMEOUT_SIDE_PANEL = 10;
 
     WebDriver driver;
     By priceLocator = By.cssSelector(".priceToPay");
@@ -36,19 +36,24 @@ public class ProductPage {
         return driver.findElement(availableDateLocator).getText();
     }
 
-    public void addToCart() {
-        driver.findElement(addToCartLocator).click();
+    public ProductPage addToCart() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT_SIDE_PANEL));
+        WebElement addToCartButton = wait.until(ExpectedConditions.elementToBeClickable(addToCartLocator));
+        addToCartButton.click();
+        return this;
     }
 
-    public void refuseInsurance() {
+    public ProductPage refuseInsurance() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT_SIDE_PANEL));
         WebElement noThanksButton = wait.until(ExpectedConditions.elementToBeClickable(noThanksLocator));
         noThanksButton.click();
+        return this;
     }
 
-    public void openCart() {
+    public CartPage openCart() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT_SIDE_PANEL));
         WebElement cartButton = wait.until(ExpectedConditions.elementToBeClickable(cartLocator));
         cartButton.click();
+        return new CartPage(driver);
     }
 }

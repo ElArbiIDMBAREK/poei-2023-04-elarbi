@@ -20,12 +20,12 @@ public class GamesAndConsolesPage {
         this.driver = driver;
     }
 
-    public void OpenBestSeller(int index) {
+    public ProductPage openBestSeller(int index) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT_SIDE_PANEL));
-
         WebElement bestSellerProduct = wait.until(ExpectedConditions.elementToBeClickable(bestSellerLocator));
         List<WebElement> bestSellerProducts = driver.findElements(bestSellerLocator);
         bestSellerProducts.get(index).click();
+        return new ProductPage(driver);
     }
 
 }

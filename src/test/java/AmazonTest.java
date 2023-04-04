@@ -10,9 +10,6 @@ public class AmazonTest {
 
     WebDriver driver;
     String urlPage = "https://www.amazon.fr";
-    String keyword = "Apple iPhone 13 (128 Go) - Vert";
-    String expectedPrice = "54,99€";
-    String expectedAvailableDate = "Cet article paraîtra le 12 mai 2023.";
 
     @BeforeMethod
     public void setup() {
@@ -23,34 +20,33 @@ public class AmazonTest {
 
     @Test
     public void firstAmazonTest() {
-        HomePage homePage = new HomePage(driver);
-        GamesAndConsolesPage gamesAndConsolesPage = new GamesAndConsolesPage(driver);
-        ProductPage productPage = new ProductPage(driver);
-        CartPage cartPage = new CartPage(driver);
-        SearchResultPage searchResultPage = new SearchResultPage(driver);
+        String keyword = "Apple iPhone 13 (128 Go) - Vert";
 
-        homePage.closeCookiePopup();
-        homePage.search(keyword);
-        searchResultPage.openSearchResult(0);
-        productPage.addToCart();
-        productPage.refuseInsurance();
-        productPage.openCart();
-        Assert.assertEquals(cartPage.getProductTitle(0), keyword, "The title doesn't contain " + keyword);
+        HomePage homePage = new HomePage(driver);
+
+        String actualProductTitle = homePage.closeCookiePopup()
+                .search(keyword)
+                .openSearchResult(0)
+                .addToCart()
+                .refuseInsurance()
+                .openCart()
+                .getProductTitle(0);
+        Assert.assertEquals(actualProductTitle, keyword, "The title is not '" + keyword + "'");
     }
 
     @Test
     public void secondAmazonTest() {
-        HomePage homePage = new HomePage(driver);
-        GamesAndConsolesPage gamesAndConsolesPage = new GamesAndConsolesPage(driver);
-        ProductPage productPage = new ProductPage(driver);
-        CartPage cartPage = new CartPage(driver);
-        SearchResultPage searchResultPage = new SearchResultPage(driver);
+        String expectedPrice = "54,99€";
+        String expectedAvailableDate = "Cet article paraîtra le 12 mai 2023.";
 
-        homePage.closeCookiePopup();
-        homePage.goToGamesAndConsolesPage();
-        gamesAndConsolesPage.OpenBestSeller(0);
+        HomePage homePage = new HomePage(driver);
+        ProductPage productPage = new ProductPage(driver);
+
+        homePage.closeCookiePopup()
+                .goToGamesAndConsolesPage()
+                .openBestSeller(0);
         Assert.assertEquals(productPage.getPrice(),expectedPrice, "The price is not " + expectedPrice);
-        Assert.assertEquals(productPage.getAvailableDate(), expectedAvailableDate, "The dates are not the same " + "(" + expectedAvailableDate + ")");
+        Assert.assertEquals(productPage.getAvailableDate(), expectedAvailableDate, "The dates are not the same : '" + expectedAvailableDate + "'");
     }
 
     @AfterMethod

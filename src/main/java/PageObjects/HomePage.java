@@ -24,7 +24,7 @@ public class HomePage {
         this.driver = driver;
     }
 
-    public void goToGamesAndConsolesPage() {
+    public GamesAndConsolesPage goToGamesAndConsolesPage() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT_SIDE_PANEL));
 
         WebElement allMenuButton = wait.until(ExpectedConditions.elementToBeClickable(allMenuLocator));
@@ -34,14 +34,18 @@ public class HomePage {
         setSleep(500);
         WebElement allGamesButton = wait.until(ExpectedConditions.elementToBeClickable(allGamesLocator));
         allGamesButton.click();
+
+        return new GamesAndConsolesPage(driver);
     }
 
-    public void search(String keyword) {
+    public SearchResultPage search(String keyword) {
         driver.findElement(searchBarLocator).sendKeys(keyword + Keys.ENTER);
+        return new SearchResultPage(driver);
     }
 
-    public void closeCookiePopup() {
+    public HomePage closeCookiePopup() {
         driver.findElement(cookieLocator).click();
+        return this;
     }
 
     public void setSleep(int time) {

@@ -20,12 +20,14 @@ public class SearchResultPage {
         this.driver = driver;
     }
 
-    public void openSearchResult(int index) {
+    public ProductPage openSearchResult(int index) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT_SIDE_PANEL));
 
         WebElement searchResultProduct = wait.until(ExpectedConditions.elementToBeClickable(searchResultLocator));
         List<WebElement> searchResultProducts = driver.findElements(searchResultLocator);
         searchResultProducts.get(index).click();
+
+        return new ProductPage(driver);
     }
 
 }
