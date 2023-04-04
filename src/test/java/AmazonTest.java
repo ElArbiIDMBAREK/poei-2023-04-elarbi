@@ -35,7 +35,7 @@ public class AmazonTest {
         productPage.addToCart();
         productPage.refuseInsurance();
         productPage.openCart();
-        Assert.assertEquals(cartPage.getProductTitle(0), keyword, "The title doesn't contain the keyword");
+        Assert.assertEquals(cartPage.getProductTitle(0), keyword, "The title doesn't contain " + keyword);
     }
 
     @Test
@@ -49,8 +49,8 @@ public class AmazonTest {
         homePage.closeCookiePopup();
         homePage.goToGamesAndConsolesPage();
         gamesAndConsolesPage.OpenBestSeller(0);
-        Assert.assertEquals(productPage.getPrice(),expectedPrice, "The prices are not the same");
-        Assert.assertEquals(productPage.getAvailableDate(), expectedAvailableDate, "The dates are not the same");
+        Assert.assertEquals(productPage.getPrice(),expectedPrice, "The price is not " + expectedPrice);
+        Assert.assertEquals(productPage.getAvailableDate(), expectedAvailableDate, "The dates are not the same" + (expectedAvailableDate));
     }
 
     @AfterMethod
