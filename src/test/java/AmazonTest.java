@@ -1,5 +1,6 @@
 import PageObjects.GamesAndConsolesPage;
 import PageObjects.HomePage;
+import PageObjects.ProductPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -25,11 +26,15 @@ public class AmazonTest {
 
         HomePage homePage = new HomePage(driver);
         GamesAndConsolesPage gamesAndConsolesPage = new GamesAndConsolesPage(driver);
+        ProductPage productPage = new ProductPage(driver);
 
         homePage.closeCookiePopup();
         //homePage.search(keyword);
         homePage.goToGamesAndConsolesPage();
-        gamesAndConsolesPage.OpenBestSeller(0);
+        gamesAndConsolesPage.OpenBestSeller(1);
+        productPage.addToCart();
+        productPage.refuseInsurance();
+        productPage.openCart();
     }
 
     @AfterMethod

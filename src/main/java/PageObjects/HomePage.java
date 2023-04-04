@@ -11,7 +11,7 @@ import java.time.Duration;
 
 public class HomePage {
 
-    static final int TIMEOUT_SIDE_PANEL = 10;
+    static final int TIMEOUT_SIDE_PANEL = 5;
 
     WebDriver driver;
     By cookieLocator = By.id("sp-cc-accept");
@@ -31,6 +31,7 @@ public class HomePage {
         allMenuButton.click();
         WebElement gamesAndConsolesButton = wait.until(ExpectedConditions.elementToBeClickable(gamesAndConsolesLocator));
         gamesAndConsolesButton.click();
+        setSleep(500);
         WebElement allGamesButton = wait.until(ExpectedConditions.elementToBeClickable(allGamesLocator));
         allGamesButton.click();
     }
