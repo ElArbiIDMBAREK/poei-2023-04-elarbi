@@ -30,6 +30,6 @@ public class GoogleTest {
 
     @AfterMethod
     public void teardown() {
-        //driver.quit();
+        driver.quit();
     }
 }
