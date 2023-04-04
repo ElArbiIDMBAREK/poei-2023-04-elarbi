@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ProductPage {
 
-    static final int TIMEOUT_SIDE_PANEL = 10;
+    static final int TIMEOUT_SIDE_PANEL = 5;
 
     WebDriver driver;
     By priceLocator = By.cssSelector(".priceToPay");
