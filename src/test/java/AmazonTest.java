@@ -50,7 +50,7 @@ public class AmazonTest {
         homePage.goToGamesAndConsolesPage();
         gamesAndConsolesPage.OpenBestSeller(0);
         Assert.assertEquals(productPage.getPrice(),expectedPrice, "The price is not " + expectedPrice);
-        Assert.assertEquals(productPage.getAvailableDate(), expectedAvailableDate, "The dates are not the same" + (expectedAvailableDate));
+        Assert.assertEquals(productPage.getAvailableDate(), expectedAvailableDate, "The dates are not the same " + "(" + expectedAvailableDate + ")");
     }
 
     @AfterMethod
