@@ -1,3 +1,4 @@
+import PageObjects.GamesAndConsolesPage;
 import PageObjects.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,9 +24,12 @@ public class AmazonTest {
     public void amazonTest() {
 
         HomePage homePage = new HomePage(driver);
+        GamesAndConsolesPage gamesAndConsolesPage = new GamesAndConsolesPage(driver);
 
         homePage.closeCookiePopup();
-        homePage.search(keyword);
+        //homePage.search(keyword);
+        homePage.goToGamesAndConsolesPage();
+        gamesAndConsolesPage.OpenBestSeller(0);
     }
 
     @AfterMethod

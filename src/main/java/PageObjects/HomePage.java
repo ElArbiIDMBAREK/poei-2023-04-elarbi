@@ -11,14 +11,14 @@ import java.time.Duration;
 
 public class HomePage {
 
-    static final int TIMEOUT_SIDE_PANEL = 5;
+    static final int TIMEOUT_SIDE_PANEL = 10;
 
+    WebDriver driver;
     By cookieLocator = By.id("sp-cc-accept");
     By allMenuLocator = By.id("nav-hamburger-menu");
     By gamesAndConsolesLocator = By.cssSelector("[data-menu-id='12']");
     By allGamesLocator = By.cssSelector("ul.hmenu-visible a[class='hmenu-item']"); //"ul.hmenu.hmenu-visible.hmenu-translateX a[class='hmenu-item']"
     By searchBarLocator = By.cssSelector("#twotabsearchtextbox");
-    WebDriver driver;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -41,5 +41,13 @@ public class HomePage {
 
     public void closeCookiePopup() {
         driver.findElement(cookieLocator).click();
+    }
+
+    public void setSleep(int time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
