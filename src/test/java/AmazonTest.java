@@ -49,6 +49,14 @@ public class AmazonTest {
         Assert.assertEquals(productPage.getAvailableDate(), expectedAvailableDate, "The dates are not the same : '" + expectedAvailableDate + "'");
     }
 
+    @Test
+    public void thirdAmazonTest() {
+        HomePage homePage = new HomePage(driver);
+
+        homePage.closeCookiePopup()
+                .createNewAccount();
+    }
+
     @AfterMethod
     public void teardown() {
         driver.quit();

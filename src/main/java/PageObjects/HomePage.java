@@ -4,9 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.swing.*;
 import java.time.Duration;
 
 public class HomePage {
@@ -14,11 +16,13 @@ public class HomePage {
     static final int TIMEOUT_SIDE_PANEL = 5;
 
     WebDriver driver;
-    By cookieLocator = By.id("sp-cc-accept");
-    By allMenuLocator = By.id("nav-hamburger-menu");
+    By cookieLocator = By.cssSelector("#sp-cc-accept");
+    By allMenuLocator = By.cssSelector("#nav-hamburger-menu");
     By gamesAndConsolesLocator = By.cssSelector("[data-menu-id='12']");
     By allGamesLocator = By.cssSelector("ul.hmenu-visible a[class='hmenu-item']"); //"ul.hmenu.hmenu-visible.hmenu-translateX a[class='hmenu-item']"
     By searchBarLocator = By.cssSelector("#twotabsearchtextbox");
+    By listAndAccountButtonLocator = By.cssSelector("#nav-link-accountList");
+    By creatNewAccountLocator = By.cssSelector(".nav-action-button");
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -46,6 +50,17 @@ public class HomePage {
     public HomePage closeCookiePopup() {
         driver.findElement(cookieLocator).click();
         return this;
+    }
+
+    public void createNewAccount() {
+        Actions actions = new Actions(driver);
+
+        WebElement buttonAccount = driver.findElement(listAndAccountButtonLocator);
+        actions.moveToElement(buttonAccount);
+        actions.perform();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT_SIDE_PANEL));
+        wait.until(ExpectedConditions.elementToBeClickable(creatNewAccountLocator)).click();
     }
 
     public void setSleep(int time) {
