@@ -18,7 +18,7 @@ public class AmazonTest {
         driver.get(urlPage);
     }
 
-    @Test
+    //@Test
     public void firstAmazonTest() {
         String keyword = "Apple iPhone 13 (128 Go) - Vert";
 

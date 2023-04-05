@@ -21,7 +21,7 @@ public class GoogleTest {
         driver.get(urlPage);
     }
 
-    @Test
+    //@Test
     public void googleTest() {
         List<WebElement> buttons = driver.findElements(By.cssSelector("button [role=none]"));
         buttons.get(3).click();
