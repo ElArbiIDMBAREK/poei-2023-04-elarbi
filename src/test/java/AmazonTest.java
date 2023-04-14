@@ -6,6 +6,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 
+import java.util.concurrent.TimeUnit;
+
 public class AmazonTest {
 
     WebDriver driver;
@@ -15,10 +17,11 @@ public class AmazonTest {
     public void setup() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        //driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); // ImplicitWait pour le Driver
         driver.get(urlPage);
     }
 
-    //@Test
+    @Test
     public void firstAmazonTest() {
         String keyword = "Apple iPhone 13 (128 Go) - Vert";
 
@@ -34,7 +37,7 @@ public class AmazonTest {
         Assert.assertEquals(actualProductTitle, keyword, "The title is not '" + keyword + "'");
     }
 
-    @Test
+    //@Test
     public void secondAmazonTest() {
         String expectedPrice = "54,99€";
         String expectedAvailableDate = "Cet article paraîtra le 12 mai 2023.";

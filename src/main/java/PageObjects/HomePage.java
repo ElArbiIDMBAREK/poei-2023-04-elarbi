@@ -5,6 +5,8 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,7 +18,10 @@ public class HomePage {
     static final int TIMEOUT_SIDE_PANEL = 5;
 
     WebDriver driver;
-    By cookieLocator = By.cssSelector("#sp-cc-accept");
+
+    @FindBy (css = "#sp-cc-accept")
+    private WebElement cookieLocator;
+    //By cookieLocator = By.cssSelector("#sp-cc-accept");
     By allMenuLocator = By.cssSelector("#nav-hamburger-menu");
     By gamesAndConsolesLocator = By.cssSelector("[data-menu-id='12']");
     By allGamesLocator = By.cssSelector("ul.hmenu-visible a[class='hmenu-item']"); //"ul.hmenu.hmenu-visible.hmenu-translateX a[class='hmenu-item']"
@@ -26,6 +31,7 @@ public class HomePage {
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public GamesAndConsolesPage goToGamesAndConsolesPage() {
@@ -48,7 +54,8 @@ public class HomePage {
     }
 
     public HomePage closeCookiePopup() {
-        driver.findElement(cookieLocator).click();
+        //driver.findElement(cookieLocator).click();
+        cookieLocator.click();
         return this;
     }
 
