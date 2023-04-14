@@ -1,7 +1,7 @@
 pipeline {
     agent any
     triggers {
-        cron ("* * * * *")
+        cron ("0 0 * * *")
     }
 
     stages {
